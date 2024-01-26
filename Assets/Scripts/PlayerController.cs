@@ -6,9 +6,13 @@ using UnityEngine;
 [RequireComponent(typeof(CharacterController))]
 public class PlayerController : MonoBehaviour
 {
-    [SerializeField] float speed;
+    [SerializeField] float baseSpeed;
+    [SerializeField] float sprintMultiplier;
+    private float speed;
+
     private CharacterController controller;
 
+    private bool isSprinting;
     private void Start()
     {
         controller = GetComponent<CharacterController>();
@@ -17,6 +21,17 @@ public class PlayerController : MonoBehaviour
     private void Update()
     {
         PlayerMovement();
+
+        if (Input.GetKey(KeyCode.LeftShift) || Input.GetKey(KeyCode.RightShift))
+        {
+            isSprinting = true;
+            speed = baseSpeed * sprintMultiplier;
+        }
+        else
+        {
+            isSprinting = false;
+            speed = baseSpeed;
+        }
     }
 
     private void PlayerMovement()
