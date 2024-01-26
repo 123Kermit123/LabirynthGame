@@ -6,13 +6,23 @@ using UnityEngine;
 [RequireComponent(typeof(CharacterController))]
 public class PlayerController : MonoBehaviour
 {
+    [Header("Movement")]
     [SerializeField] float baseSpeed;
     [SerializeField] float sprintMultiplier;
-    private float speed;
+    [SerializeField] float groundMultiplier;
+
+    [SerializeField] float LowMul;
+    [SerializeField] float HighMul;
+
+    [SerializeField]private float speed;
 
     private CharacterController controller;
 
     private bool isSprinting;
+
+    [Header("Ground")]
+    public Transform groundCheck;
+    public LayerMask groundMask;
     private void Start()
     {
         controller = GetComponent<CharacterController>();
@@ -22,15 +32,17 @@ public class PlayerController : MonoBehaviour
     {
         PlayerMovement();
 
+        CheckGround();
+
         if (Input.GetKey(KeyCode.LeftShift) || Input.GetKey(KeyCode.RightShift))
         {
             isSprinting = true;
-            speed = baseSpeed * sprintMultiplier;
+            speed = baseSpeed * sprintMultiplier * groundMultiplier;
         }
         else
         {
             isSprinting = false;
-            speed = baseSpeed;
+            speed = baseSpeed * groundMultiplier;
         }
     }
 
@@ -42,5 +54,27 @@ public class PlayerController : MonoBehaviour
         Vector3 move = transform.right * x + transform.forward * z;
 
         controller.Move(move * speed * Time.deltaTime);
+    }
+
+    private void CheckGround()
+    {
+        RaycastHit hit;
+        if (Physics.Raycast(groundCheck.position, transform.TransformDirection(Vector3.down), out hit, 0.4f, groundMask))
+        {
+            string terrainType = hit.collider.gameObject.tag;
+
+            switch(terrainType)
+            {
+                default:
+                    groundMultiplier = 1;
+                    break;
+                case "Low":
+                    groundMultiplier = LowMul;
+                    break;
+                case "High":
+                    groundMultiplier = HighMul;
+                    break;
+            }
+        }
     }
 }
