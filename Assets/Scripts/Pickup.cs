@@ -5,9 +5,10 @@ using UnityEngine;
 public class Pickup : MonoBehaviour
 {
     [SerializeField] float RotateValue;
-    void Update()
+    void FixedUpdate()
     {
-        transform.Rotate(0, RotateValue * Time.deltaTime, 0);
+        Vector3 Angle = new Vector3(0f, 0f,RotateValue * Time.fixedDeltaTime);
+        transform.Rotate(Angle);
     }
 
     public virtual void Picked()

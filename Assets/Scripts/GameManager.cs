@@ -18,7 +18,9 @@ public class GameManager : MonoBehaviour
 
     public int RedKeys, GreenKeys, BlueKeys = 0;
 
+    [Header("Keybinds")]
     public KeyCode PauseKey;
+    public KeyCode PickupStats;
     void Start()
     {
         if (Instance == null)
@@ -41,7 +43,7 @@ public class GameManager : MonoBehaviour
 
         PauseCheck();
 
-        
+        PickupStatistics();
     }
 
     void Stoper()
@@ -105,5 +107,31 @@ public class GameManager : MonoBehaviour
     {
         CancelInvoke(nameof(Stoper));
         InvokeRepeating(nameof(Stoper), TIME, 1);
+    }
+
+    public void AddKey(KeyColor color)
+    {
+        if (color == KeyColor.RedKey)
+        {
+            RedKeys++;
+        }
+        if (color == KeyColor.GreenKey)
+        {
+            GreenKeys++;
+        }
+        if (color == KeyColor.BlueKey)
+        {
+            BlueKeys++;
+        }
+    }
+
+    void PickupStatistics()
+    {
+        if (Input.GetKeyDown(PickupStats))
+        {
+            Debug.Log($"Current TimeToEnd: {TimeToEnd}");
+            Debug.Log($"Keys: red: {RedKeys}, green: {GreenKeys}, blue: {BlueKeys}");
+            Debug.Log($"Points: {Points}");
+        }
     }
 }

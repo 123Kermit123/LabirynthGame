@@ -2,17 +2,14 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Crystal : MonoBehaviour
+public class Crystal : Pickup
 {
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
+    public int Points = 5;
 
-    // Update is called once per frame
-    void Update()
+    public override void Picked()
     {
-        
+        GameManager.Instance.AddPoints(Points);
+
+        base.Picked();
     }
 }

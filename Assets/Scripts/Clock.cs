@@ -2,17 +2,13 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Clock : MonoBehaviour
+public class Clock : Pickup
 {
-    // Start is called before the first frame update
-    void Start()
+    public int TimeToAdd = 5;
+    public override void Picked()
     {
-        
-    }
+        GameManager.Instance.AddTime(TimeToAdd);
 
-    // Update is called once per frame
-    void Update()
-    {
-        
+        base.Picked();
     }
 }

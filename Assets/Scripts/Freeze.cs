@@ -2,17 +2,13 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Freeze : MonoBehaviour
+public class Freeze : Pickup
 {
-    // Start is called before the first frame update
-    void Start()
+    public int FreezeTimeCooldown = 14;
+    public override void Picked()
     {
-        
-    }
+        GameManager.Instance.FreezeTime(FreezeTimeCooldown);
 
-    // Update is called once per frame
-    void Update()
-    {
-        
+        base.Picked();
     }
 }
