@@ -4,15 +4,15 @@ using UnityEngine;
 
 public class Pickup : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
-
-    // Update is called once per frame
+    [SerializeField] float RotateValue;
     void Update()
     {
-        
+        transform.Rotate(0, RotateValue * Time.deltaTime, 0);
+    }
+
+    public virtual void Picked()
+    {
+        Debug.Log("Bazowa: Picked");
+        Destroy(gameObject);
     }
 }

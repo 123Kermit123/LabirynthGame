@@ -13,6 +13,12 @@ public class GameManager : MonoBehaviour
     public bool win;
 
     public GameObject MenuPanel;
+
+    public int Points = 0;
+
+    public int RedKeys, GreenKeys, BlueKeys = 0;
+
+    public KeyCode PauseKey;
     void Start()
     {
         if (Instance == null)
@@ -28,14 +34,14 @@ public class GameManager : MonoBehaviour
         InvokeRepeating(nameof(Stoper), 2, 1);
     }
 
-    public KeyCode PauseKey;
-
     // Update is called once per frame
     void Update()
     {
         MenuPanel.SetActive(GamePaused);
 
         PauseCheck();
+
+        
     }
 
     void Stoper()
@@ -77,10 +83,27 @@ public class GameManager : MonoBehaviour
     public void ResumeGame()
     {
         Cursor.lockState = CursorLockMode.Locked;
+        Cursor.visible = false;
 
         Debug.Log("Game Resumed");
         Time.timeScale = 1;
 
         GamePaused = false;
+    }
+
+    public void AddPoints(int POINTS)
+    {
+        Points += POINTS;
+    }
+
+    public void AddTime(int TIMETOADD)
+    {
+        TimeToEnd += TIMETOADD;
+    }
+
+    public void FreezeTime(int TIME)
+    {
+        CancelInvoke(nameof(Stoper));
+        InvokeRepeating(nameof(Stoper), TIME, 1);
     }
 }
