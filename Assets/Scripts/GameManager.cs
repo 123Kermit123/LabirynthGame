@@ -18,6 +18,7 @@ public class GameManager : MonoBehaviour
 
     public int RedKeys, GreenKeys, BlueKeys = 0;
 
+    public bool DebugTime = false;
     [Header("Keybinds")]
     public KeyCode PauseKey;
     public KeyCode PickupStats;
@@ -49,7 +50,10 @@ public class GameManager : MonoBehaviour
     void Stoper()
     {
         TimeToEnd--;
-        Debug.Log($"Time: {TimeToEnd}");
+        if (DebugTime)
+        {
+            Debug.Log($"Time: {TimeToEnd}");
+        }
 
         if (TimeToEnd <= 0)
         {
