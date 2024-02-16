@@ -7,9 +7,9 @@ Material:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: Player
+  m_Name: PlaneStandard2
   m_Shader: {fileID: 46, guid: 0000000000000000f000000000000000, type: 0}
-  m_Parent: {fileID: 2100000, guid: 3475ec0c40b9e894dac6fdda978193d9, type: 2}
+  m_Parent: {fileID: 2100000, guid: ee19c0e1d4fcdd5428de8bddf9575f12, type: 2}
   m_ModifiedSerializedProperties: 0
   m_ValidKeywords: []
   m_InvalidKeywords: []
@@ -26,5 +26,5 @@ Material:
     m_Ints: []
     m_Floats: []
     m_Colors:
-    - _Color: {r: 1, g: 0, b: 0.94516706, a: 1}
+    - _Color: {r: 0.36538804, g: 0.4811321, b: 0.4681109, a: 1}
   m_BuildTextureStacks: []

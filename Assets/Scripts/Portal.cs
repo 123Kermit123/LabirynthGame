@@ -12,7 +12,15 @@ public class Portal : MonoBehaviour
     public Transform renderSurface;
     public Transform portalCollider;
 
-    
+    private GameObject player;
+    private PortalTeleport portalTeleport;
 
+    private void Awake()
+    {
+        player = GameObject.FindGameObjectWithTag("Player");
+        portalTeleport = portalCollider.GetComponent<PortalTeleport>();
+        portalTeleport.player = player.transform;
+        portalTeleport.receiver = otherPortal.portalCollider;
+    }
 
 }
