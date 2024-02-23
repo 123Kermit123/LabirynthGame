@@ -20,9 +20,16 @@ public class PlayerController : MonoBehaviour
 
     private bool isSprinting;
 
+    private Vector3 playerVelocity;
+
+
     [Header("Ground")]
     public Transform groundCheck;
     public LayerMask groundMask;
+
+    [Header("Jumping")]
+    [SerializeField] KeyCode JumpKey;
+    public float jumpPower = 10;
     private void Start()
     {
         controller = GetComponent<CharacterController>();
@@ -30,9 +37,9 @@ public class PlayerController : MonoBehaviour
 
     private void Update()
     {
-        PlayerMovement();
+        //PlayerMovement();
 
-        CheckGround();
+        Movement();
 
         if (Input.GetKey(KeyCode.LeftShift) || Input.GetKey(KeyCode.RightShift))
         {
@@ -46,7 +53,7 @@ public class PlayerController : MonoBehaviour
         }
     }
 
-    private void PlayerMovement()
+    /*private void PlayerMovement()
     {
         float x = Input.GetAxis("Horizontal");
         float z = Input.GetAxis("Vertical");
@@ -54,9 +61,9 @@ public class PlayerController : MonoBehaviour
         Vector3 move = transform.right * x + transform.forward * z;
 
         controller.Move(move * speed * Time.deltaTime);
-    }
+    }*/
 
-    private void CheckGround()
+    private void Movement()
     {
         RaycastHit hit;
         if (Physics.Raycast(groundCheck.position, transform.TransformDirection(Vector3.down), out hit, 0.4f, groundMask))
@@ -76,6 +83,22 @@ public class PlayerController : MonoBehaviour
                     break;
             }
         }
+
+        #region PlayerMovement
+
+        playerVelocity += Physics.gravity * Time.deltaTime * 2;
+
+        float x = Input.GetAxis("Horizontal");
+        float z = Input.GetAxis("Vertical");
+
+        Vector3 move = hit.collider != null ? (transform.right * x + transform.forward * z) : (transform.up * playerVelocity.y);
+
+        playerVelocity.y = Input.GetKeyDown(JumpKey) && hit.collider != null ? jumpPower : 0;
+
+        controller.Move(move * speed * Time.deltaTime);
+
+        #endregion 
+
     }
 
     private void OnControllerColliderHit(ControllerColliderHit hit)

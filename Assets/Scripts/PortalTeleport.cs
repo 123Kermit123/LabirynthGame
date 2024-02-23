@@ -44,7 +44,7 @@ public class PortalTeleport : MonoBehaviour
                 float rotationDiff = -Quaternion.Angle(transform.rotation, receiver.rotation);
                 rotationDiff += 100;
 
-                player.Rotate(Vector3.up, rotationDiff);
+                //player.Rotate(Vector3.up, rotationDiff);
 
                 Vector3 positionOffset = Quaternion.Euler(0f, rotationDiff, 0f) * portalToPlayer;
 
