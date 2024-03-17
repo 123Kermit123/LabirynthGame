@@ -10,6 +10,17 @@ public enum KeyColor
 public class Key : Pickup
 {
     public KeyColor ColorKey;
+
+    private void Start()
+    {
+        if (ColorKey == KeyColor.RedKey)
+        GetComponentInChildren<MeshRenderer>().material.color = Color.red;
+        else if (ColorKey == KeyColor.GreenKey)
+            GetComponentInChildren<MeshRenderer>().material.color = Color.green;
+        else
+            GetComponentInChildren<MeshRenderer>().material.color = Color.blue;
+
+    }
     public override void Picked()
     {
         GameManager.Instance.AddKey(ColorKey);
