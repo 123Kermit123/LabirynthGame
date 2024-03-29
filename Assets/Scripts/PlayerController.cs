@@ -22,6 +22,14 @@ public class PlayerController : MonoBehaviour
 
     private Vector3 playerVelocity;
 
+    public float DashMul;
+
+    public bool CanDash;
+
+    public float DashCooldown;
+
+    float DM;
+    float SM;
 
     [Header("Ground")]
     public Transform groundCheck;
@@ -44,12 +52,25 @@ public class PlayerController : MonoBehaviour
         if (Input.GetKey(KeyCode.LeftShift) || Input.GetKey(KeyCode.RightShift))
         {
             isSprinting = true;
-            speed = baseSpeed * sprintMultiplier * groundMultiplier;
+            SM = sprintMultiplier;
+
+            speed = baseSpeed * sprintMultiplier * groundMultiplier ;
         }
         else
         {
             isSprinting = false;
+            SM = 1;
+
             speed = baseSpeed * groundMultiplier;
+        }
+
+        if (Input.GetKeyDown(KeyCode.Space) && CanDash)
+        {
+            DM = DashMul;
+
+            StartCoroutine(Dash());
+
+            Invoke(nameof(CanDashTrue), DashCooldown);
         }
     }
 
@@ -107,5 +128,27 @@ public class PlayerController : MonoBehaviour
         {
             hit.gameObject.GetComponent<Pickup>().Picked();
         }
+    }
+
+    void CanDashTrue()
+    {
+        CanDash = true;
+    }
+
+    IEnumerator Dash()
+    {
+        CanDash = false;
+
+        int i = 1;
+
+        while (i < 20)
+        {
+            yield return new WaitForSecondsRealtime(0.001f);
+            i++;
+
+            controller.Move(transform.forward * speed * DashMul * Time.deltaTime * 3 * SM);
+        }
+
+        yield return null;
     }
 }
