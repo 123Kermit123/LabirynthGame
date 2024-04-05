@@ -655,6 +655,9 @@ GameObject:
   m_Component:
   - component: {fileID: 2213648808478139918}
   - component: {fileID: 2411080366942792495}
+  - component: {fileID: 5314557991987586515}
+  - component: {fileID: 5750559116077067106}
+  - component: {fileID: 4672615478071823305}
   m_Layer: 0
   m_Name: Portal
   m_TagString: Untagged
@@ -703,6 +706,62 @@ MonoBehaviour:
   myCamera: {fileID: 2213648808464519715}
   renderSurface: {fileID: 2213648806768401415}
   portalCollider: {fileID: 2213648808582813262}
+--- !u!95 &5314557991987586515
+Animator:
+  serializedVersion: 5
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2213648808478139919}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: cf41d60917634aa4597abca55daa3425, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
+--- !u!114 &5750559116077067106
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2213648808478139919}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d171e53f5cc3e61468fbe42f0fbe1dfc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  doors: []
+  myColor: 0
+--- !u!65 &4672615478071823305
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2213648808478139919}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 1
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 9, y: 4.5, z: 6}
+  m_Center: {x: 0, y: 2.25, z: 0}
 --- !u!1 &2213648808582813263
 GameObject:
   m_ObjectHideFlags: 0
@@ -1150,6 +1209,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Key
       objectReference: {fileID: 0}
+    - target: {fileID: 7053129722500662502, guid: dd5ccc18f143ceb489fd9d6efa2bd342, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 1469846013083271897, guid: dd5ccc18f143ceb489fd9d6efa2bd342, type: 3}
     m_RemovedComponents: []
     m_RemovedGameObjects:
     - {fileID: 65702495048144492, guid: dd5ccc18f143ceb489fd9d6efa2bd342, type: 3}

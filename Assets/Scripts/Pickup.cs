@@ -7,6 +7,6 @@ public class Pickup : MonoBehaviour
     public virtual void Picked()
     {
         Debug.Log($"Picked: {gameObject.name}");
-        Destroy(gameObject);
+        Destroy(gameObject, 0.01f);
     }
 }

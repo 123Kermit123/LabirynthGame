@@ -42,6 +42,9 @@ public class Portal : MonoBehaviour
     private void Start()
     {
         renderSurface.GetComponent<Renderer>().material.mainTexture = otherPortal.myCamera.targetTexture;
+
+        GetComponent<Lock>().doors.Add(GetComponentInChildren<Door>());
+        GetComponent<Lock>().doors.Add(otherPortal.GetComponentInChildren<Door>());
     }
 
 }
