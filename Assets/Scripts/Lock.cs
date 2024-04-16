@@ -1,3 +1,4 @@
+using JetBrains.Annotations;
 using System.Collections;
 using System.Collections.Generic;
 using System.Reflection;
@@ -7,19 +8,27 @@ public class Lock : MonoBehaviour
 {
     public List<Door> doors;
     public KeyColor myColor;
-    bool iCanOpen = false;
-    bool locked = false;
+    public bool iCanOpen = false;
+    public bool locked = false;
     Animator animator;
+
+    public string PadlockName = "Padlock";
+    public GameObject PadlockObj;
+
+    public Material CanOpenMaterial;
+    public Material BlankMaterial;
     private void Start()
     {
         animator = GetComponent<Animator>();
+        PadlockObj = transform.Find(PadlockName).gameObject;
     }
 
     private void Update()
     {
-        if (Input.GetKeyDown(KeyCode.E) && iCanOpen == true && locked)
+        if (Input.GetKeyDown(KeyCode.E) && iCanOpen == true && !locked)
         {
             animator.SetBool("Open", true);
+            UseKey();
         }
     }
 
@@ -28,7 +37,7 @@ public class Lock : MonoBehaviour
         if (other.tag == "Player")
         {
             iCanOpen = true;
-            print("Mo¿esz wejœæ");
+            print("MoÅ¼esz wejÅ›Ä‡");
         }
     }
 
@@ -37,7 +46,7 @@ public class Lock : MonoBehaviour
         if (other.tag == "Player")
         {
             iCanOpen = false;
-            print("Nie mo¿esz wejœæ");
+            print("Nie moÅ¼esz wejÅ›Ä‡");
         }
     }
 
@@ -73,5 +82,8 @@ public class Lock : MonoBehaviour
         {
             return false;
         }
+
+        
     }
+
 }

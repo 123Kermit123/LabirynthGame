@@ -35,6 +35,8 @@ public class GameManager : MonoBehaviour
         }
 
         InvokeRepeating(nameof(Stoper), 2, 1);
+
+        AudioManager.instance.Play("music");
     }
 
     // Update is called once per frame
@@ -49,7 +51,6 @@ public class GameManager : MonoBehaviour
 
     void Stoper()
     {
-        TimeToEnd--;
         if (DebugTime)
         {
             Debug.Log($"Time: {TimeToEnd}");
@@ -59,6 +60,12 @@ public class GameManager : MonoBehaviour
         {
             TimeToEnd = 0;
             Endgame = true;
+        }
+
+        if(!GamePaused)
+        {
+            AudioManager.instance.Play("stoper");
+            TimeToEnd--;
         }
     }
 
